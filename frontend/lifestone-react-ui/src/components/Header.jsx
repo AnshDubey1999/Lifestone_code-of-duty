@@ -32,13 +32,9 @@ const Header = () => {
             </NavItem>
           </Nav>
         </Collapse> */}
-        <NavbarBrand
-          href="/"
-          style={{ color: "white" }}
-          alt="Logo"
-        >
+        <NavbarBrand href="/" style={{ color: "white" }} alt="Logo">
           {/* <h3>LifeStone</h3> */}
-          <img src={shortLogoWithText} style={{ height: "50px"}} />
+          <img src={shortLogoWithText} style={{ height: "50px" }} />
         </NavbarBrand>
         <Button
           color="pink-600"
