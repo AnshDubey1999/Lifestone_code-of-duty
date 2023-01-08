@@ -1,8 +1,11 @@
 body {
-    background-color: black;
+  background-color: black;
 }
 
-
 ::placeholder {
-      color: #71797e;
-    }
+  color: white;
+}
+
+.container {
+    text-align: right;
+  }
