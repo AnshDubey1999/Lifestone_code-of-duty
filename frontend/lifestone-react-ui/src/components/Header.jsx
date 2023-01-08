@@ -1,52 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
   Button,
-  NavItem,
-  NavLink,
 } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import { useDispatch , useSelector} from 'react-redux';
 import WalletIcon from "@mui/icons-material/Wallet";
 import shortLogoWithText from "../images/shortLogoWithText.png";
-const Header = () => {
-  const [collapsed, setCollapsed] = useState(true);
+import { updateLoginState } from '../actions/AuthActions';
 
-  const toggleNavbar = () => setCollapsed(!collapsed);
+const Header = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isAuth } = useSelector( state => state.auth );
 
   return (
     <div>
+{
+  isAuth?(<div></div>):(<div>
       <Navbar light className="d-flex align-items-center">
-        {/* <NavbarToggler onClick={toggleNavbar} className="me-2" /> */}
-        {/* <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar className="text-white">
-            <NavItem>
-              <NavLink href="/components/" className="text-white">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="text-white" href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse> */} 
         <NavbarBrand href="/" style={{ color: "white" }} alt="Logo">
-          <img src={shortLogoWithText} style={{ height: "50px" }} />
+          <img src={shortLogoWithText} style={{ height: "60px" }} alt="Our beautiful logo"/>
         </NavbarBrand>
         <Button
           color="pink-600"
-          className="mx-4"
+          className=""
           style={{ backgroundColor: "#de3576" }}
+          onClick={() => {
+            dispatch(updateLoginState( true ));
+            navigate('/timeline');
+            window.location.reload();
+          }}
         >
           <div className="text-white">
-            Connect to your wallet &nbsp;
+            Connect to wallet &nbsp;
             <WalletIcon />
           </div>
         </Button>
       </Navbar>
       <hr style={{ height:'5px', color:'white'}}/>
+  </div>)
+}
+
     </div>
   );
 };

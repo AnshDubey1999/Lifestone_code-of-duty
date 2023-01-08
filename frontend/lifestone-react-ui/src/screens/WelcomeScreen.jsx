@@ -1,15 +1,16 @@
-import React from 'react';
-import { Button } from 'reactstrap';
-import WalletIcon from '@mui/icons-material/Wallet';
+import React from "react";
+import styled from '@emotion/styled'
+import Animation from '../components/Animation';
 
 const WelcomeScreen = () => {
-
     return (
-        <div>
-            <h1></h1>
-        </div>
-    )
-
+    <StyledContainer>
+        <Animation />
+    </StyledContainer>);
 }
+
+const StyledContainer = styled('div')`
+    background-color: #121212;
+`;
 
 export default WelcomeScreen; 

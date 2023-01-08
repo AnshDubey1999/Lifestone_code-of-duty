@@ -1,7 +1,14 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 
-const Timeline = () => {
-  return <></>;
+const TimelineScreen = () => {
+    const { isAuth } = useSelector( state => state.auth );
+    console.log("isAuth", isAuth);
+    return(
+        <>
+            <h1>Timeline screen</h1>
+        </>
+    )
 };
 
-export default Timeline;
+export default TimelineScreen;
