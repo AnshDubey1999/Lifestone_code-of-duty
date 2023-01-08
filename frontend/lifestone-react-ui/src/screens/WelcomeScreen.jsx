@@ -17,4 +17,4 @@ const StyledContainer = styled('div')`
     background-color: #121212;
 `;
 
-export default WelcomeScreen;
+export default WelcomeScreen; 
