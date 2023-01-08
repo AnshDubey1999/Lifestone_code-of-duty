@@ -40,13 +40,17 @@ const TimelineScreen = () => {
     // };
 
     const milestone = new FormData();
-    milestone.append('description', e.target[1].value);
-    milestone.append('title', e.target[0].value);
-    milestone.append('owner_id', userId);
-    milestone.append('file', image, image.name);
+    milestone.append("description", e.target[1].value);
+    milestone.append("title", e.target[0].value);
+    milestone.append("owner_id", userId);
+    milestone.append("file", image, image.name);
 
-        console.log("milestone",milestone)
-    await addMilestoneToDb(milestone).then((res)=>console.log("success",res))}
+    console.log("milestone", milestone);
+    await addMilestoneToDb(milestone).then((res) => {
+      console.log("success", res);
+      setModalOpen(false);
+    });
+  };
   return (
     <div>
       <div className="ms-5">
