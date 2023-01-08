@@ -31,22 +31,22 @@ const Header = () => {
               </NavLink>
             </NavItem>
           </Nav>
-        </Collapse> */}
+        </Collapse> */} 
         <NavbarBrand href="/" style={{ color: "white" }} alt="Logo">
-          {/* <h3>LifeStone</h3> */}
           <img src={shortLogoWithText} style={{ height: "50px" }} />
         </NavbarBrand>
         <Button
           color="pink-600"
-          className=""
+          className="mx-4"
           style={{ backgroundColor: "#de3576" }}
         >
           <div className="text-white">
-            Connect to wallet &nbsp;
+            Connect to your wallet &nbsp;
             <WalletIcon />
           </div>
         </Button>
       </Navbar>
+      <hr style={{ height:'5px', color:'white'}}/>
     </div>
   );
 };
