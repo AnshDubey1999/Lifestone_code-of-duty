@@ -5,7 +5,7 @@ import {
   Button,
 } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WalletIcon from "@mui/icons-material/Wallet";
 import shortLogoWithText from "../images/shortLogoWithText.png";
 import { updateLoginState } from '../actions/AuthActions';
@@ -16,17 +16,18 @@ const Header = () => {
     const dispatch = useDispatch();
     const { isAuth } = useSelector( state => state.auth );
 
+    // const { isAuth } = useSelector( state => state.auth );
+
   return (
     <div>
-{
-  isAuth?(<div></div>):(<div>
+(<div>
       <Navbar light className="d-flex align-items-center">
         <NavbarBrand href="/" style={{ color: "white" }} alt="Logo">
           <img src={shortLogoWithText} style={{ height: "60px" }} alt="Our beautiful logo"/>
         </NavbarBrand>
-        <Button
+        {!isAuth ? <Button
           color="pink-600"
-          className=""
+          className="mx-5"
           style={{ backgroundColor: "#de3576" }}
           onClick={() => {
             dispatch(updateLoginState( true ));
@@ -38,18 +39,18 @@ const Header = () => {
             Connect to wallet &nbsp;
             <WalletIcon />
           </div>
-        </Button>
-        <Button
+        </Button> : null}
+        {isAuth ? <Button
           color="pink-600"
+          className="mx-5"
           style={{ backgroundColor: "#de3576" }}
           onClick={() => {
             dispatch(updateLoginState( false ));
             navigate('/');
-            window.location.reload();
           }}
         >
             Log out
-        </Button>
+        </Button> : null}
       </Navbar>
       <hr style={{ height:'5px', color:'white'}}/>
   </div>)
