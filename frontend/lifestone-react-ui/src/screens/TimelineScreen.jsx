@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   Button,
@@ -12,12 +12,24 @@ import {
 } from "reactstrap";
 import { addMilestoneToDb } from "../Api";
 import Timeline from "../components/TimelineComponent";
+import { getMilestonesUser } from "../Api";
+
+function useForceUpdate() {
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue((value) => value + 1);
+}
+
 const TimelineScreen = () => {
   const { isAuth } = useSelector((state) => state.auth);
   const { userId } = useSelector((state) => state.auth);
   const [modalOpen, setModalOpen] = useState(false);
   const [image, setImage] = useState("");
 
+  //     useEffect(()=> {
+  //         const fetchContracts = async () => {
+  //             setMilestonesList(await getMilestonesUser(userId))
+  //         }fetchContracts
+  //     },
   const fileSelectedHandler = (e) => {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
@@ -30,14 +42,6 @@ const TimelineScreen = () => {
     const formData = new FormData();
     formData.append("file", image);
 
-    console.log(image.name);
-    // const milestone = {
-    //   "title": e.target[0].value,
-    //   "description": e.target[1].value,
-    //   "owner_id":userId,
-    //   "file": formData,
-    // };
-
     const milestone = new FormData();
     milestone.append("description", e.target[1].value);
     milestone.append("title", e.target[0].value);
@@ -48,23 +52,34 @@ const TimelineScreen = () => {
     await addMilestoneToDb(milestone).then((res) => {
       console.log("success", res);
       setModalOpen(false);
-    });
+    })
+    window.location.reload();
   };
+
   return (
     <div>
       <div className="ms-5">
         <h2 className="text-white ">Timeline screen</h2>
       </div>{" "}
       <Timeline />
-      <div className="container">
+      <div className="container parent-element">
         <Button
-          className="btn btn-light"
+          className="btn btn-light text-white float-end"
           rounded
           onClick={() => setModalOpen(true)}
-          style={{ borderRadius: "20px" }}
+          style={{
+            borderRadius: "50%",
+            backgroundColor: "#343434",
+            borderColor: "#343434",
+            width: "50px",
+            height: "50px",
+            right: "20px",
+            bottom: "20px",
+          }}
         >
-          <h1>+</h1>
+          <h3>+</h3>
         </Button>
+
         <Modal isOpen={modalOpen} toggle={() => setModalOpen(false)}>
           <ModalHeader>Add Lifestone</ModalHeader>
           <ModalBody>

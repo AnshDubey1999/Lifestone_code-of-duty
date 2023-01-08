@@ -22,22 +22,7 @@ import jazzicon from "@metamask/jazzicon";
 import { Avatar } from "@mui/material";
 import { addUserToDb } from "../Api";
 
-const SearchBar = () => {
-  return (
-    <div style={{ borderRadius: "25px" }}>
-      <Form style={{ backgroundColor: "#36454F", color: "white" }}>
-        <FormGroup>
-          <Input
-            placeholder="Search"
-            className="placeholder"
-            style={{ color: "white", backgroundColor: "#36454F" }}
-            //  onChange={}
-          />
-        </FormGroup>
-      </Form>
-    </div>
-  );
-};
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -128,11 +113,11 @@ const Header = () => {
         {isAuth ? (
           <>
             {" "}
-            <SearchBar />
             <Nav>
               <NavItem>
                 <Button
                   color="pink-600"
+                  className="text-white me-5"
                   style={{ backgroundColor: "#de3576" }}
                   onClick={() => {
                     dispatch(updateLoginState(false));
