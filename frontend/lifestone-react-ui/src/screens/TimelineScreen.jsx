@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 import {
   Button,
   Modal,
@@ -16,16 +16,33 @@ import Timeline from "../components/TimelineComponent";
 const TimelineScreen = () => {
   const { isAuth } = useSelector((state) => state.auth);
   const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
   const [image, setImage] = useState("");
 
-//   const fileSelectedHandler = (e) => {
-//     setImage(e.target.files[0]);
-//     console.log(e.target.files[0]);
-//   };
+  const fileSelectedHandler = (e) => {
+    setImage(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
 
-//   console.log("isAuth", isAuth);
+  console.log("isAuth", isAuth);
 
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    //api kink
+    const formData = new FormData();
+    formData.append("file", image,image.name)
+    // formData.append('upload_preset',"")
+    console.log(image.name)
+    const milestone = {
+        title : e.target[0].value,
+        description: e.target[1].value,
+        image: formData
+    }
+    
+    console.log(milestone)
+
+}
   return (
     <div>
       <div className="ms-5">
@@ -46,7 +63,7 @@ const TimelineScreen = () => {
           <ModalBody>
             <Form
               className="col-8 mx-auto"
-              // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               encType="multipart/form-data"
             >
               <FormGroup>
@@ -66,7 +83,7 @@ const TimelineScreen = () => {
                   type="file"
                   name="image"
                   accept="image/*"
-                //   onChange={fileSelectedHandler}
+                  onChange={fileSelectedHandler}
                 />
               </FormGroup>
               <Input type="submit" value="Submit" />
