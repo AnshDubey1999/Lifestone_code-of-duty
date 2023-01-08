@@ -3,10 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
-// import App from './App';
-// import App from "./App";
+// import App from './App'
 import reportWebVitals from "./reportWebVitals";
-import HomeScreen from "./screens/HomeScreen";
+import Timeline from "./screens/TimelineScreen";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
@@ -15,7 +14,7 @@ root.render(
   <BrowserRouter>
   <Header/>
     <Routes>
-      <Route path="/" element={<HomeScreen />} />
+      <Route path="/" element={<Timeline />} />
     </Routes>
   </BrowserRouter>
 );
