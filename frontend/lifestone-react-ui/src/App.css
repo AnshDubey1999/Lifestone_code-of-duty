@@ -1,3 +1,8 @@
 body {
     background-color: black;
 }
+
+
+::placeholder {
+      color: #71797e;
+    }
